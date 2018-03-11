@@ -27,7 +27,6 @@
  //
 
 import HorizontalRule from './formats/hr'
-Quill.register('formats/horizontal', HorizontalRule)
 
 class MarkdownShortcuts {
   constructor (quill, options) {
