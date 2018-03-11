@@ -1,7 +1,9 @@
-let BlockEmbed = Quill.import('blots/block/embed');
+export const getHorizontalRule = (quill) => {
+  let BlockEmbed = quill.import('blots/block/embed');
 
-class HorizontalRule extends BlockEmbed {}
-HorizontalRule.blotName = 'hr';
-HorizontalRule.tagName = 'hr';
+  class HorizontalRule extends BlockEmbed {}
+  HorizontalRule.blotName = 'hr';
+  HorizontalRule.tagName = 'hr';
 
-export default HorizontalRule;
+  return HorizontalRule;  
+}

@@ -71,6 +71,11 @@ var MarkdownShortcuts =
 "use strict";
 
 
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.MarkdownShortcuts = undefined;
+
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }(); // Quill.js Plugin - Markdown Shortcuts
@@ -103,15 +108,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _hr = __webpack_require__(1);
 
-var _hr2 = _interopRequireDefault(_hr);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-Quill.register('formats/horizontal', _hr2.default);
-
-var MarkdownShortcuts = function () {
+var MarkdownShortcuts = exports.MarkdownShortcuts = function () {
   function MarkdownShortcuts(quill, options) {
     var _this = this;
 
@@ -119,6 +118,8 @@ var MarkdownShortcuts = function () {
 
     this.quill = quill;
     this.options = options;
+
+    quill.register('formats/horizontal', (0, _hr.getHorizontalRule)(quill));
 
     this.matches = [{
       name: 'header',
@@ -428,25 +429,29 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var BlockEmbed = Quill.import('blots/block/embed');
+var getHorizontalRule = exports.getHorizontalRule = function getHorizontalRule(quill) {
+  var BlockEmbed = quill.import('blots/block/embed');
 
-var HorizontalRule = function (_BlockEmbed) {
-  _inherits(HorizontalRule, _BlockEmbed);
+  var HorizontalRule = function (_BlockEmbed) {
+    _inherits(HorizontalRule, _BlockEmbed);
 
-  function HorizontalRule() {
-    _classCallCheck(this, HorizontalRule);
+    function HorizontalRule() {
+      _classCallCheck(this, HorizontalRule);
 
-    return _possibleConstructorReturn(this, (HorizontalRule.__proto__ || Object.getPrototypeOf(HorizontalRule)).apply(this, arguments));
-  }
+      return _possibleConstructorReturn(this, (HorizontalRule.__proto__ || Object.getPrototypeOf(HorizontalRule)).apply(this, arguments));
+    }
+
+    return HorizontalRule;
+  }(BlockEmbed);
+
+  HorizontalRule.blotName = 'hr';
+  HorizontalRule.tagName = 'hr';
 
   return HorizontalRule;
-}(BlockEmbed);
-
-HorizontalRule.blotName = 'hr';
-HorizontalRule.tagName = 'hr';
-
-exports.default = HorizontalRule;
+};
 
 /***/ })
 /******/ ]);
 //# sourceMappingURL=markdownShortcuts.js.map
+
+export default MarkdownShortcuts;

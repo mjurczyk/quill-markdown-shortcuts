@@ -26,12 +26,14 @@
  // THE SOFTWARE.
  //
 
-import HorizontalRule from './formats/hr'
+import { getHorizontalRule } from './formats/hr'
 
-class MarkdownShortcuts {
+export class MarkdownShortcuts {
   constructor (quill, options) {
     this.quill = quill
     this.options = options
+
+    quill.register('formats/horizontal', getHorizontalRule(quill))
 
     this.matches = [
       {
